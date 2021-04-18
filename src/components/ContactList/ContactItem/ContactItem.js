@@ -1,9 +1,11 @@
-import React from "react";
-import lis from "./ContactItem.module.css";
-import PropTypes from "prop-types";
+import React from 'react';
+import lis from './ContactItem.module.css';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as allContactsAction from '../../../redux/allContacts/allContactsAction';
 const ContactItem = ({ contacts, deleteContact }) => {
-  // console.log(deleteContact);
-  return contacts.map((contact) => {
+  // console.log(contacts);
+  return contacts.map(contact => {
     const { name, number, id } = contact;
     return (
       <li key={id} className={lis.item}>
@@ -20,19 +22,19 @@ const ContactItem = ({ contacts, deleteContact }) => {
     );
   });
 };
-ContactItem.defaultProps = {
-  name: "",
-  number: "",
-  id: "",
-};
+
 ContactItem.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       number: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
   deleteContact: PropTypes.func.isRequired,
 };
-export default ContactItem;
+
+const mapDispatchToProps = {
+  deleteContact: allContactsAction.deleteContact,
+};
+export default connect(null, mapDispatchToProps)(ContactItem);

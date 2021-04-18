@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import cfs from './ContactForm.module.css';
 import PropTypes from 'prop-types';
-
 import { v4 as uuidv4 } from 'uuid';
-
 class ContactForm extends Component {
   state = {
     name: '',
@@ -18,7 +16,8 @@ class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit({ id: uuidv4(), ...this.state });
+    const contact = { id: uuidv4(), ...this.state };
+    this.props.onSubmit(contact);
     this.reset();
   };
 
