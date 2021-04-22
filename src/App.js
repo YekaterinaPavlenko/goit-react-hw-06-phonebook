@@ -7,25 +7,6 @@ import { connect } from 'react-redux';
 import * as allContactsAction from './redux/allContacts/allContactsAction';
 
 class App extends Component {
-  componentDidMount() {
-    // console.log('я родился');
-    const dataFromLocalStorage = localStorage.getItem('contacts');
-    // console.log(dataFromLocalStorage);
-    if (dataFromLocalStorage) {
-      const contactsFromLS = JSON.parse(dataFromLocalStorage);
-      // console.log(contactsFromLS);
-      this.props.getContacts(contactsFromLS);
-    }
-  }
-  componentDidUpdate(prevProps, prevState) {
-    // console.log('я обновился');
-    const { contacts } = this.props;
-    if (contacts !== prevProps.contacts) {
-      // console.log(contacts);
-      localStorage.setItem('contacts', JSON.stringify(this.props.contacts));
-    }
-  }
-
   render() {
     return (
       <div className="App">
