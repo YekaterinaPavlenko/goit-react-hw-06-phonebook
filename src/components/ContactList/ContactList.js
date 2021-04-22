@@ -33,6 +33,7 @@ const getVisibleContacts = (allContacts, filter) => {
 };
 const mapStateToProps = store => {
   const { filter, items } = store.contacts;
+  // console.log(items);
   const visibleContacts = getVisibleContacts(items, filter);
   return {
     contacts: visibleContacts,

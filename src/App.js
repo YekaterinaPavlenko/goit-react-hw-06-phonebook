@@ -5,7 +5,6 @@ import ContactList from './components/ContactList/ContactList';
 import Filter from './components/Filter/Filter';
 import { connect } from 'react-redux';
 import * as allContactsAction from './redux/allContacts/allContactsAction';
-// import * as filterContactsAction from './redux/filter/filterContactsAction';
 
 class App extends Component {
   componentDidMount() {
@@ -26,28 +25,12 @@ class App extends Component {
       localStorage.setItem('contacts', JSON.stringify(this.props.contacts));
     }
   }
-  formSubmitHandler = data => {
-    // console.log(data);
-    const { contacts } = this.props;
-    let existName = contacts.find(
-      contact => contact.name.toLowerCase() === data.name.toLowerCase(),
-    );
-    let existNumber = contacts.find(
-      contact => contact.number.toLowerCase() === data.number.toLowerCase(),
-    );
-    let existContact = (existName && 'name') || (existNumber && 'number');
-    // console.log(existContact);
-
-    existName || existNumber
-      ? alert(`The ${existContact} is already in contacts.`)
-      : this.props.addContact(data);
-  };
 
   render() {
     return (
       <div className="App">
         <h1>Phonebook</h1>
-        <ContactForm onSubmit={this.formSubmitHandler} />
+        <ContactForm />
         <h2>Contacts</h2>
         <Filter />
         <ContactList />
