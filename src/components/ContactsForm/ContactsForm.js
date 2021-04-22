@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import cfs from './ContactForm.module.css';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
+import { connect } from 'react-redux';
+import * as allContactsAction from '../../redux/allContacts/allContactsAction';
 class ContactForm extends Component {
   state = {
     name: '',
@@ -64,4 +66,7 @@ class ContactForm extends Component {
 }
 ContactForm.propTypes = { onSubmit: PropTypes.func };
 
-export default ContactForm;
+const mapDispatchToProps = {
+  onSubmit: allContactsAction.addContact,
+};
+export default connect(null, mapDispatchToProps)(ContactForm);

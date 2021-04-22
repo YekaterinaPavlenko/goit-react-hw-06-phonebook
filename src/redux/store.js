@@ -1,11 +1,17 @@
-import { combineReducers } from 'redux';
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+// import { combineReducers } from 'redux';
+import {
+  configureStore,
+  combineReducers,
+  getDefaultMiddleware,
+} from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import allContactsReducer from './allContacts/allContactsReducer';
 import filterContactsReducer from './filter/filterContactsReducers';
 
-console.log(getDefaultMiddleware);
-const middleware = [...getDefaultMiddleware, logger];
+const defaultMiddlewares = getDefaultMiddleware();
+// console.log(defaultMiddlewares);
+
+const middleware = [...defaultMiddlewares, logger];
 const myContactsReducer = combineReducers({
   items: allContactsReducer,
   filter: filterContactsReducer,
@@ -21,6 +27,7 @@ const store = configureStore({
   middleware,
   devTools: process.env.NODE_ENV === 'development',
 });
+///without toolkit
 // const store = createStore(
 //   rootReducer,
 //   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
