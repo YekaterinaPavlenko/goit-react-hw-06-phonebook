@@ -27,10 +27,10 @@ const defaultMiddlewares = getDefaultMiddleware({
 // console.log(defaultMiddlewares);
 const middleware = [...defaultMiddlewares, logger];
 
-const persistConfig = {
-  key: 'contacts',
-  storage,
-};
+// const persistConfig = {
+//   key: 'contacts',
+//   storage,
+// };
 const contactsPersistConfig = {
   key: 'contacts',
   storage,
@@ -45,15 +45,15 @@ const rootReducer = combineReducers({
   contacts: persistReducer(contactsPersistConfig, myContactsReducer),
 });
 
-const store = configureStore({
+export const store = configureStore({
   reducer: rootReducer,
   middleware,
   devTools: process.env.NODE_ENV === 'development',
 });
-const persistor = persistStore(store);
+export const persistor = persistStore(store);
 ///without toolkit
 // const store = createStore(
 //   rootReducer,
 //   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 // );
-export default { store, persistor };
+// export default { store, persistor };
